@@ -1,7 +1,6 @@
 package calculator.controller;
 
 import calculator.service.CalculateService;
-
 import java.util.Scanner;
 
 public class CalculatorController {
@@ -13,7 +12,7 @@ public class CalculatorController {
         System.out.println("계산식을 입력하세요");
         inputRequest = sc.nextLine();
     }
-
+    
     public void result() {
         CalculateService calculateService = new CalculateService();
 

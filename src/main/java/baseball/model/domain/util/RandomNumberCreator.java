@@ -16,10 +16,13 @@ public class RandomNumberCreator {
         randomNumber = new ArrayList<>();
 
         while (randomNumber.size() < NUMBER_LENGTH) {
-            int num = random.nextInt(MAX_RANGE) + MIN_RANGE;
-            addNumer(num);
+            addNumer(makeRandomNumber(random));
         }
         return randomNumber;
+    }
+
+    private int makeRandomNumber(Random random) {
+        return random.nextInt(MAX_RANGE) + MIN_RANGE;
     }
 
     private void addNumer(int num) {

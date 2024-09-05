@@ -9,11 +9,10 @@ public class RandomNumberCreator {
     private static final int MAX_RANGE = 9;
     private static final int MIN_RANGE = 1;
 
-    private List<Integer> randomNumber;
+    private final List<Integer> randomNumber = new ArrayList<>();
 
     public List<Integer> createRandomNumber() {
         Random random = new Random();
-        randomNumber = new ArrayList<>();
 
         while (randomNumber.size() < NUMBER_LENGTH) {
             addNumer(makeRandomNumber(random));

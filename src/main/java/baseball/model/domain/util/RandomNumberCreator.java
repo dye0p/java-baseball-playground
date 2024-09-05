@@ -10,10 +10,9 @@ public class RandomNumberCreator {
     private static final int MIN_RANGE = 1;
 
     private final List<Integer> randomNumber = new ArrayList<>();
+    private final Random random = new Random();
 
     public List<Integer> createRandomNumber() {
-        Random random = new Random();
-
         while (randomNumber.size() < NUMBER_LENGTH) {
             addNumer(makeRandomNumber(random));
         }

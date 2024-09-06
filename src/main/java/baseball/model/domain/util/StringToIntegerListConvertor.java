@@ -9,13 +9,16 @@ public class StringToIntegerListConvertor {
     private final List<Integer> convertNubmer = new ArrayList<>();
 
     public List<Integer> converte(String playerInputNumber) {
+        convertInputToNumberList(playerInputNumber);
+        return convertNubmer;
+    }
 
+    private void convertInputToNumberList(String playerInputNumber) {
         for (int index = START_INDEX; index < playerInputNumber.length(); index++) {
             char c = getCharacterAt(playerInputNumber, index);
             int num = convertCharToInt(c);
             convertNubmer.add(num);
         }
-        return convertNubmer;
     }
 
     private int convertCharToInt(char c) {
@@ -29,5 +32,4 @@ public class StringToIntegerListConvertor {
     private char getCharacterAt(String playerInputNumber, int index) {
         return playerInputNumber.charAt(index);
     }
-
 }

@@ -1,20 +1,56 @@
 package baseball.controller;
 
 import baseball.model.domain.Computer;
+import baseball.model.domain.Game;
+import baseball.model.domain.Judge;
 import baseball.view.InputView;
+import baseball.view.ResultView;
+import java.util.List;
 
 public class BaseBallGameMaster {
 
     private final InputView inputView;
-    private final Computer computer;
+    private final Game game;
+    private final ResultView resultView;
 
     public BaseBallGameMaster() {
-        this.computer = new Computer();
+        this.game = Game.startGame();
         this.inputView = new InputView();
+        this.resultView = new ResultView();
     }
 
     public void startGame() {
-        String input = inputView.inputRequest();
-        String secretNumber = computer.createRandomNumber();
+        while (!endGame()) {
+            startRound();
+            endRound();
+        }
+    }
+
+    private boolean endGame() {
+        return game.gameEnd();
+    }
+
+    private void startRound() {
+        List<Integer> computerSecretNumber = new Computer().createRandomNumber();
+        Judge judge;
+        do {
+            judge = new Judge();
+            String playerInputNumber = inputView.inputRequest();
+            String result = judge.calculateStrikeAndBall(playerInputNumber, computerSecretNumber);
+            resultView.result(result);
+        } while (!judge.isThreeStrike()); //3 스트라이크 나올때까지 반복
+    }
+
+    private void endRound() {
+        resultView.endGame();
+        int gameStatusChoice = inputView.getGameStatusChoice();
+
+        if (gameStatusChoice == 1) {
+            startGame();
+        }
+
+        if (gameStatusChoice == 2) {
+            game.end();
+        }
     }
 }

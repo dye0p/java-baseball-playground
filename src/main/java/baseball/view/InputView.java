@@ -13,10 +13,10 @@ public class InputView {
         return sc.nextLine();
     }
 
-    public String getGameStatusChoice() {
+    public int getGameStatusChoice() {
         Scanner sc = new Scanner(System.in);
         System.out.println(CHOIC_GAME_STATUS_FORMAT);
 
-        return sc.nextLine();
+        return sc.nextInt();
     }
 }

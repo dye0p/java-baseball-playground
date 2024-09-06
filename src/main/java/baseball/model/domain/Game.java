@@ -19,4 +19,8 @@ public class Game {
     public boolean gameEnd() {
         return this.gameStatus == GameStatus.END;
     }
+
+    public GameStatus getGameStatus() {
+        return this.gameStatus;
+    }
 }

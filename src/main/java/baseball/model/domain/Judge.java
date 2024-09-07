@@ -13,7 +13,6 @@ public class Judge {
 
     private int strike;
     private int ball;
-    private String result;
     private final StringToIntegerListConvertor convertor = new StringToIntegerListConvertor();
 
     public String calculateStrikeAndBall(String playerInputNumber, List<Integer> computerSecretNumber) {
@@ -23,27 +22,42 @@ public class Judge {
         strike = countStrike(computerSecretNumber, playerNumber);
         ball = countBall(computerSecretNumber, playerNumber);
 
-        if (ball >= 1 && strike >= 1) {
-            result = ball + BALL_TEXT + " " + strike + STRIKE_TEXT;
+        return gameResult();
+    }
+
+    private String gameResult() {
+        if (isThreeStrike()) {
+            return strike + STRIKE_TEXT;
+        }
+        if (isBothBallAndStrike()) {
+            return ball + BALL_TEXT + " " + strike + STRIKE_TEXT;
         }
 
-        if (ball == 0 && strike >= 1) {
-            result = strike + STRIKE_TEXT;
+        if (isOnlyStrike()) {
+            return strike + STRIKE_TEXT;
         }
 
-        if (strike == 0 && ball >= 1) {
-            result = ball + BALL_TEXT;
+        if (isOnlyBall()) {
+            return ball + BALL_TEXT;
         }
 
-        if (strike == 3) {
-            result = strike + STRIKE_TEXT;
-        }
+        return NOTHING_TEXT;
+    }
 
-        if (strike == 0 && ball == 0) {
-            result = NOTHING_TEXT;
-        }
+    public boolean isThreeStrike() {
+        return strike == 3;
+    }
 
-        return result;
+    private boolean isBothBallAndStrike() {
+        return ball >= 1 && strike >= 1;
+    }
+
+    private boolean isOnlyStrike() {
+        return ball == 0 && strike >= 1;
+    }
+
+    private boolean isOnlyBall() {
+        return strike == 0 && ball >= 1;
     }
 
     private int countStrike(List<Integer> computerSecretNumber, List<Integer> playerNumber) {
@@ -58,9 +72,5 @@ public class Judge {
                 .flatMap(i -> IntStream.range(MIM_RANGE, MAX_RANGE)
                         .filter(j -> computerSecretNumber.get(i).equals(playerNumber.get(j))))
                 .count();
-    }
-
-    public boolean isThreeStrike() {
-        return strike == 3;
     }
 }

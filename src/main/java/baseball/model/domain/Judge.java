@@ -2,6 +2,7 @@ package baseball.model.domain;
 
 import baseball.model.domain.util.StringToIntegerListConvertor;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Judge {
 
@@ -15,27 +16,15 @@ public class Judge {
 
         List<Integer> playerNumber = convertor.converte(playerInputNumber);
 
-        strike = 0;
-        ball = 0;
+        strike = (int) IntStream.range(0, 3)
+                .filter(i -> computerSecretNumber.get(i).equals(playerNumber.get(i)))
+                .count();
 
-        for (int i = 0; i < 3; i++) {
-            Integer computer = computerSecretNumber.get(i);
-            Integer player = playerNumber.get(i);
-
-            if (computer.equals(player)) {
-                strike++;
-            }
-
-            if (!computer.equals(player)) {
-                for (int j = 0; j < 3; j++) {
-                    Integer player2 = playerNumber.get(j);
-
-                    if (i != j && computer.equals(player2)) {
-                        ball++;
-                    }
-                }
-            }
-        }
+        ball = (int) IntStream.range(0, 3)
+                .filter(i -> !computerSecretNumber.get(i).equals(playerNumber.get(i)))
+                .flatMap(i -> IntStream.range(0, 3)
+                        .filter(j -> computerSecretNumber.get(i).equals(playerNumber.get(j))))
+                .count();
 
         if (ball >= 1 && strike >= 1) {
             result = ball + "볼" + " " + strike + "스트라이크";

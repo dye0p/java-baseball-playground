@@ -10,6 +10,7 @@ public class StrikeCounter implements StrikeAndBallCounter {
     @Override
     public int countStrikeAndBall(List<Integer> computerSecretNumber, List<Integer> playerSecretNumber) {
         return (int) IntStream.range(MIM_RANGE, MAX_RANGE)
-                .filter(i -> computerSecretNumber.get(i).equals(playerSecretNumber.get(i))).count();
+                .filter(i -> computerSecretNumber.get(i).equals(playerSecretNumber.get(i)))
+                .count();
     }
 }

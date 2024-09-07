@@ -8,11 +8,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BallCountorTest {
-    private BallCountor ballCountor;
+    private BallCounter ballCountor;
 
     @BeforeEach
     void setUp() {
-        ballCountor = new BallCountor();
+        ballCountor = new BallCounter();
     }
 
     @DisplayName("볼 개수를 계산한다.")
@@ -23,7 +23,7 @@ class BallCountorTest {
         List<Integer> playerSecretNumber = List.of(1, 7, 8);
 
         //when
-        int result = ballCountor.countBall(computerSecretNumber, playerSecretNumber);
+        int result = ballCountor.countStrikeAndBall(computerSecretNumber, playerSecretNumber);
 
         //then
         assertThat(result).isEqualTo(2);

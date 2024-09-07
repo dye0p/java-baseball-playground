@@ -1,32 +1,37 @@
 package baseball.model.domain;
 
-import baseball.model.domain.util.BallCountor;
+import baseball.model.domain.util.BallCounter;
 import baseball.model.domain.util.GameResultManager;
-import baseball.model.domain.util.StrikeCountor;
+import baseball.model.domain.util.StrikeCounter;
 import baseball.model.domain.util.StringToIntegerListConvertor;
 import java.util.List;
 
 public class Judge {
+
     private int strike;
     private int ball;
 
-    private final StringToIntegerListConvertor convertor = new StringToIntegerListConvertor();
-    private final StrikeCountor strikeCountor = new StrikeCountor();
-    private final BallCountor ballCountor = new BallCountor();
-    private final GameResultManager gameResultManager = new GameResultManager();
-
     public String calculateStrikeAndBall(String playerInputNumber, List<Integer> computerSecretNumber) {
 
-        List<Integer> playerNumber = convertor.converte(playerInputNumber);
+        StrikeCounter strikeCountor = new StrikeCounter();
+        BallCounter ballCountor = new BallCounter();
+        GameResultManager gameResultManager = new GameResultManager();
 
-        strike = strikeCountor.countStrike(computerSecretNumber, playerNumber);
-        ball = ballCountor.countBall(computerSecretNumber, playerNumber);
+        List<Integer> playerNumber = convertToIntegerList(playerInputNumber);
+
+        strike = strikeCountor.countStrikeAndBall(computerSecretNumber, playerNumber);
+        ball = ballCountor.countStrikeAndBall(computerSecretNumber, playerNumber);
 
         return gameResultManager.gameResult(strike, ball);
     }
 
-    public boolean isThreeStrike() {
-        return strike == 3;
+    private List<Integer> convertToIntegerList(String playerInputNumber) {
+        StringToIntegerListConvertor convertor = new StringToIntegerListConvertor();
+        return convertor.converte(playerInputNumber);
     }
 
+    public boolean isThreeStrike() {
+        //3스트라이크가 나오면
+        return strike == 3;
+    }
 }

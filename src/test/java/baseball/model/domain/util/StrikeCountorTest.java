@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 
 class StrikeCountorTest {
 
-    private StrikeCountor strikeCountor;
+    private StrikeCounter strikeCountor;
 
     @BeforeEach
     void setUp() {
-        strikeCountor = new StrikeCountor();
+        strikeCountor = new StrikeCounter();
     }
 
     @DisplayName("스트라이크 개수를 계산한다.")
@@ -25,7 +25,7 @@ class StrikeCountorTest {
         List<Integer> playerSecretNumber = List.of(7, 4, 3);
 
         //when
-        int result = strikeCountor.countStrike(computerSecretNumber, playerSecretNumber);
+        int result = strikeCountor.countStrikeAndBall(computerSecretNumber, playerSecretNumber);
 
         //then
         assertThat(result).isEqualTo(2);

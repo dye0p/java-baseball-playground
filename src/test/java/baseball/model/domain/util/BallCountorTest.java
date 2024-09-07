@@ -1,6 +1,5 @@
 package baseball.model.domain.util;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -8,24 +7,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CountStrikeTest {
-
-    private CountStrike countStrike;
+class BallCountorTest {
+    private BallCountor ballCountor;
 
     @BeforeEach
     void setUp() {
-        countStrike = new CountStrike();
+        ballCountor = new BallCountor();
     }
 
-    @DisplayName("스트라이크 개수를 계산한다.")
+    @DisplayName("볼 개수를 계산한다.")
     @Test
-    void countStrike() {
+    void countBall() {
         //given
         List<Integer> computerSecretNumber = List.of(7, 1, 3);
-        List<Integer> playerSecretNumber = List.of(7, 4, 3);
+        List<Integer> playerSecretNumber = List.of(1, 7, 8);
 
         //when
-        int result = countStrike.countStrike(computerSecretNumber, playerSecretNumber);
+        int result = ballCountor.countBall(computerSecretNumber, playerSecretNumber);
 
         //then
         assertThat(result).isEqualTo(2);

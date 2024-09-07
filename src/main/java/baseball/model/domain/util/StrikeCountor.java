@@ -3,7 +3,7 @@ package baseball.model.domain.util;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class CountStrike {
+public class StrikeCountor {
     private static final int MIM_RANGE = 0;
     private static final int MAX_RANGE = 3;
 

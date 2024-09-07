@@ -16,15 +16,8 @@ public class Judge {
 
         List<Integer> playerNumber = convertor.converte(playerInputNumber);
 
-        strike = (int) IntStream.range(0, 3)
-                .filter(i -> computerSecretNumber.get(i).equals(playerNumber.get(i)))
-                .count();
-
-        ball = (int) IntStream.range(0, 3)
-                .filter(i -> !computerSecretNumber.get(i).equals(playerNumber.get(i)))
-                .flatMap(i -> IntStream.range(0, 3)
-                        .filter(j -> computerSecretNumber.get(i).equals(playerNumber.get(j))))
-                .count();
+        strike = countStrike(computerSecretNumber, playerNumber);
+        ball = countBall(computerSecretNumber, playerNumber);
 
         if (ball >= 1 && strike >= 1) {
             result = ball + "볼" + " " + strike + "스트라이크";
@@ -47,6 +40,20 @@ public class Judge {
         }
 
         return result;
+    }
+
+    private int countBall(List<Integer> computerSecretNumber, List<Integer> playerNumber) {
+        return (int) IntStream.range(0, 3)
+                .filter(i -> !computerSecretNumber.get(i).equals(playerNumber.get(i)))
+                .flatMap(i -> IntStream.range(0, 3)
+                        .filter(j -> computerSecretNumber.get(i).equals(playerNumber.get(j))))
+                .count();
+    }
+
+    private int countStrike(List<Integer> computerSecretNumber, List<Integer> playerNumber) {
+        return (int) IntStream.range(0, 3)
+                .filter(i -> computerSecretNumber.get(i).equals(playerNumber.get(i)))
+                .count();
     }
 
     public boolean isThreeStrike() {

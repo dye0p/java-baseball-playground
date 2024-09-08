@@ -1,7 +1,8 @@
 package baseball.model.domain.util.gameresult;
 
+import baseball.model.domain.enums.GameResultText;
+
 public class OnlyBallStrategy implements GameResultStrategy {
-    private static final String BALL_TEXT = "볼";
 
     @Override
     public boolean isApplicable(int strike, int ball) {
@@ -10,6 +11,6 @@ public class OnlyBallStrategy implements GameResultStrategy {
 
     @Override
     public String resultMessage(int strike, int ball) {
-        return ball + BALL_TEXT;
+        return ball + GameResultText.BALL.getValue();
     }
 }

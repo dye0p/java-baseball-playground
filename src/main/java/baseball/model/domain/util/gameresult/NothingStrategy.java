@@ -1,7 +1,8 @@
 package baseball.model.domain.util.gameresult;
 
+import baseball.model.domain.enums.GameResultText;
+
 public class NothingStrategy implements GameResultStrategy {
-    private static final String NOTHING_TEXT = "낫싱";
 
     @Override
     public boolean isApplicable(int strike, int ball) {
@@ -10,6 +11,6 @@ public class NothingStrategy implements GameResultStrategy {
 
     @Override
     public String resultMessage(int strike, int ball) {
-        return NOTHING_TEXT;
+        return GameResultText.NOTHING.getValue();
     }
 }

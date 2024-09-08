@@ -1,8 +1,8 @@
 package baseball.model.domain.util.gameresult;
 
+import baseball.model.domain.enums.GameResultText;
+
 public class BothBallAndStrikeStrategy implements GameResultStrategy {
-    private static final String STRIKE_TEXT = "스트라이크";
-    private static final String BALL_TEXT = "볼";
     private static final String SPACE = " ";
 
     @Override
@@ -12,6 +12,6 @@ public class BothBallAndStrikeStrategy implements GameResultStrategy {
 
     @Override
     public String resultMessage(int strike, int ball) {
-        return ball + BALL_TEXT + SPACE + strike + STRIKE_TEXT;
+        return ball + GameResultText.BALL.getValue() + SPACE + strike + GameResultText.STRIKE.getValue();
     }
 }

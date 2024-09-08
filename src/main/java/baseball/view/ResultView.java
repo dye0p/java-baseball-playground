@@ -1,5 +1,7 @@
 package baseball.view;
 
+import baseball.model.domain.enums.ViewText;
+
 public class ResultView {
 
     public void result(String result) {
@@ -7,6 +9,6 @@ public class ResultView {
     }
 
     public void endGame() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println(ViewText.GAME_WIN_MESSAGE_FORMAT.getValue());
     }
 }

@@ -1,4 +1,4 @@
-package baseball.model.domain.enums;
+package baseball.enums;
 
 public enum GameResultText {
     STRIKE("스트라이크"),

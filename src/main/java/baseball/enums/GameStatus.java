@@ -1,4 +1,4 @@
-package baseball.model.domain.enums;
+package baseball.enums;
 
 public enum GameStatus {
     IN_PROGRESS,

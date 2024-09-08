@@ -1,4 +1,4 @@
-package baseball.model.domain.enums;
+package baseball.enums;
 
 public enum ViewText {
     INPUT_NUMBER_FORMAT("숫자를 입력해 주세요 : "),

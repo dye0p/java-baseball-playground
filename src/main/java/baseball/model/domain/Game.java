@@ -1,6 +1,6 @@
 package baseball.model.domain;
 
-import baseball.model.domain.enums.GameStatus;
+import baseball.enums.GameStatus;
 
 public class Game {
 

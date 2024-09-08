@@ -1,6 +1,6 @@
 package baseball.model.domain.util.gameresult;
 
-import baseball.model.domain.enums.GameResultText;
+import baseball.enums.GameResultText;
 
 public class NothingStrategy implements GameResultStrategy {
 

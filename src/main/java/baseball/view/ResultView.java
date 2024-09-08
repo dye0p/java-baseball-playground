@@ -1,6 +1,6 @@
 package baseball.view;
 
-import baseball.model.domain.enums.ViewText;
+import baseball.enums.ViewText;
 
 public class ResultView {
 

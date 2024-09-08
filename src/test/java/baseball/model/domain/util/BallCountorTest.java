@@ -2,6 +2,7 @@ package baseball.model.domain.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import baseball.model.domain.util.calculator.BallCounter;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,9 +1,9 @@
 package baseball.model.domain;
 
-import baseball.model.domain.util.BallCounter;
 import baseball.model.domain.util.GameResultManager;
-import baseball.model.domain.util.StrikeCounter;
 import baseball.model.domain.util.StringToIntegerListConvertor;
+import baseball.model.domain.util.calculator.BallCounter;
+import baseball.model.domain.util.calculator.StrikeCounter;
 import java.util.List;
 
 public class Judge {
@@ -31,7 +31,7 @@ public class Judge {
     }
 
     public boolean isThreeStrike() {
-        //3스트라이크가 나오면
+        // TODO [2024/09/07] 3스트라이크 게임종료 고민
         return strike == 3;
     }
 }

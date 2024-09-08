@@ -13,10 +13,14 @@ public class RandomNumberCreator {
     private final Random random = new Random();
 
     public List<Integer> createRandomNumber() {
-        while (randomNumber.size() < NUMBER_LENGTH) {
+        while (isRandomNumberLessThenNubmerLength()) {
             addNumer(makeRandomNumber(random));
         }
         return randomNumber;
+    }
+
+    private boolean isRandomNumberLessThenNubmerLength() {
+        return randomNumber.size() < NUMBER_LENGTH;
     }
 
     private int makeRandomNumber(Random random) {

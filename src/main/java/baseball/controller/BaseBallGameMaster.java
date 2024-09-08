@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.enums.GameOption;
 import baseball.model.domain.Computer;
 import baseball.model.domain.Game;
 import baseball.model.domain.Judge;
@@ -45,12 +46,20 @@ public class BaseBallGameMaster {
         resultView.endGame();
         int gameStatusChoice = inputView.getGameStatusChoice();
 
-        if (gameStatusChoice == 1) {
+        if (isRestart(gameStatusChoice)) {
             startGame();
         }
 
-        if (gameStatusChoice == 2) {
+        if (isEnd(gameStatusChoice)) {
             game.end();
         }
+    }
+
+    private boolean isEnd(int gameStatusChoice) {
+        return gameStatusChoice == GameOption.END.getvalue();
+    }
+
+    private boolean isRestart(int gameStatusChoice) {
+        return gameStatusChoice == GameOption.RESTART.getvalue();
     }
 }

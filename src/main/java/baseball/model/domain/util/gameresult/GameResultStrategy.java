@@ -1,4 +1,4 @@
-package baseball.model.domain.util.gameResult;
+package baseball.model.domain.util.gameresult;
 
 public interface GameResultStrategy {
 

@@ -1,4 +1,4 @@
-package baseball.model.domain.util;
+package baseball.model.domain.util.calculator;
 
 import java.util.List;
 import java.util.stream.IntStream;

@@ -2,7 +2,9 @@ package baseball.controller;
 
 import baseball.exception.ErrorCode;
 import java.util.HashSet;
+import java.util.function.Consumer;
 import java.util.function.IntFunction;
+import java.util.function.Predicate;
 
 public class InputValidator {
     private static final int LENGTH = 3;
@@ -17,7 +19,7 @@ public class InputValidator {
 
     private void inputLengthValidate(String input) {
         if (isLength(input)) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LENGTH_MESSAGE.getValue());
+            invalidLengthMessageException();
         }
     }
 
@@ -25,12 +27,16 @@ public class InputValidator {
         return input.length() != LENGTH;
     }
 
+    private void invalidLengthMessageException() {
+        throw new IllegalArgumentException(ErrorCode.INVALID_LENGTH_MESSAGE.getValue());
+    }
+
     private void inputRangeValidate(String input) {
         input.chars()
                 .mapToObj(convertToChar())
                 .filter(this::isOutOfRange)
                 .findFirst()
-                .ifPresent(charNumber -> throwOutOfRangeException());
+                .ifPresent(outOfRangeException());
     }
 
     private boolean isOutOfRange(char charNumber) {
@@ -38,6 +44,10 @@ public class InputValidator {
             return true;
         }
         return charNumber > MAX_RANGE;
+    }
+
+    private Consumer<Character> outOfRangeException() {
+        return charNumber -> throwOutOfRangeException();
     }
 
     private void throwOutOfRangeException() {
@@ -49,13 +59,21 @@ public class InputValidator {
 
         input.chars()
                 .mapToObj(convertToChar())
-                .filter(charNumber -> !hashSet.add(charNumber))
+                .filter(isDuplicateCharacter(hashSet))
                 .findFirst()
-                .ifPresent(charNumber -> throwDuplicateNumberException());
+                .ifPresent(duplicateNumberException());
     }
 
     private IntFunction<Character> convertToChar() {
         return charNumber -> (char) charNumber;
+    }
+
+    private Predicate<Character> isDuplicateCharacter(HashSet<Character> hashSet) {
+        return charNumber -> !hashSet.add(charNumber);
+    }
+
+    private Consumer<Character> duplicateNumberException() {
+        return charNumber -> throwDuplicateNumberException();
     }
 
     private void throwDuplicateNumberException() {

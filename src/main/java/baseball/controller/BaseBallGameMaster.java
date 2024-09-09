@@ -36,7 +36,11 @@ public class BaseBallGameMaster {
         Judge judge;
         do {
             judge = new Judge();
+            InputValidator inputValidator = new InputValidator();
+
             String playerInputNumber = inputView.inputRequest();
+            inputValidator.validateInputNumber(playerInputNumber);
+
             String result = judge.calculateStrikeAndBall(playerInputNumber, computerSecretNumber);
             resultView.result(result);
         } while (!judge.isThreeStrike()); //3 스트라이크 나올때까지 반복
